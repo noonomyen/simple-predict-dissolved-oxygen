@@ -1,0 +1,3 @@
+[submodule "submodules/sarabun-font"]
+	path = submodules/sarabun-font
+	url = https://github.com/cadsondemak/Sarabun
