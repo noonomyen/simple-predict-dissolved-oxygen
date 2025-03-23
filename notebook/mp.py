@@ -35,14 +35,17 @@ def mp_exec(func: Callable, args: tuple, unorder=False):
         _mp_print_proc = Process(target=_mp_print_proc_task, daemon=True)
         _mp_print_proc.start()
 
-        with Pool() as pool:
-            if unorder:
-                yield from pool.imap_unordered(func, args)
-            else:
-                yield from pool.map(func, args)
-
-        print_queue.put(None)
-        _mp_print_proc.join()
+        try:
+            with Pool() as pool:
+                if unorder:
+                    yield from pool.imap_unordered(func, args)
+                else:
+                    yield from pool.map(func, args)
+        except Exception as e:
+            raise e
+        finally:
+            print_queue.put(None)
+            _mp_print_proc.join()
     else:
         for arg in args:
             yield func(arg)
