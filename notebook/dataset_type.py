@@ -16,13 +16,3 @@ class Dataset:
     y_train: ndarray
     y_val: ndarray
     y_test: ndarray
-
-    X_scaler: MinMaxScaler
-    y_scaler: MinMaxScaler
-
-    X_train_mms: ndarray
-    X_val_mms: ndarray
-    X_test_mms: ndarray
-    y_train_mms: ndarray
-    y_val_mms: ndarray
-    y_test_mms: ndarray
